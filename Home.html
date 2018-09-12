@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>HomePage</title>
+		
+		<link rel="stylesheet" type="text/css" href="Common.css">
+		
+		<style type="text/css">
+			#username {
+				position: absolute;
+				top: 3px;
+				left: : 20px;
+				display: inline-block;
+				border: 2px dotted purple;
+				background-color: yellow; 
+				color: purple;
+				text-align: center;
+
+			}
+		</style>
+
+	</head>
+
+	<body onload="checkAuth()">
+		
+		<p class = "label" id = "username" ></p>
+		<button class = "buttonn" onclick="logout()" style="position:absolute;top:100px;right:20px;display:inline-block;padding:2px, 2px;width:8%;font-size:20px;text-align: center;">Logout</button> 
+
+		<script>
+
+				function checkAuth()
+				{
+				    authed = 0;
+				    var urlString = window.location.href;  //Get the URL
+					var url = new URL(urlString);
+					un = url.searchParams.get("username");		//Search for ?username=
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function(){
+						if (this.readyState == 4 && this.status == 200)
+						{
+							if (this.responseText == 1)
+							{
+								authed = 1;
+								getUserName();
+							}
+							else
+							{
+								document.body.style.backgroundColor = "red";
+							}
+							
+						}
+					}
+					xmlhttp.open("GET", "CheckAuth.php?un=" + un, true);
+					xmlhttp.send();
+
+					
+				}
+
+				function getUserName() {
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function(){
+						if (this.readyState == 4 && this.status == 200)
+						{
+							document.getElementById("username").innerHTML = "Hello " + this.responseText.replace('/^\w/', c => c.toUpperCase());
+						}
+					}
+					xmlhttp.open("GET", "GetName.php?un=" + un, true);
+					xmlhttp.send();
+				}	
+
+				function logout() {
+					if (authed == 1){
+						var text = document.getElementById('username').textContent;
+						var xmlhttp = new XMLHttpRequest();
+				        xmlhttp.onreadystatechange = function() {
+				            if (this.readyState == 4 && this.status == 200) {
+				                document.body.style.backgroundColor = "lightgreen";
+				                if (this.responseText == "Success")
+				                {
+				                	alert("Succesfully Logged Out");
+				                }
+				                else
+				                {
+				                	alert(this.responseText);
+				                }
+				            
+				            }
+				        };
+				        xmlhttp.open("GET", "Logout.php?un=" + un, true);
+				        xmlhttp.send();
+				    }
+
+				}
+			
+		</script>
+
+	</body>
+
+</html>
