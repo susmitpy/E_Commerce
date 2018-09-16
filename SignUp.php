@@ -17,6 +17,7 @@
 	$emailId = $_POST["emailId"];
 	$userName = $_POST["userName"];
 	$passWord = $_POST["passWord"];
+	$dob = $_POST["datePicker"];
 
 	//Checking if user already exists
 
@@ -44,10 +45,10 @@
 			else
 			{
 				//Query for insertion
-				$stmt = $conn->prepare("INSERT INTO profile (Name,Contact_Number,Email_Id,Gender,User_Name,Pass_Word) VALUES (?, ?, ?, ?, ?, ?)");
+				$stmt = $conn->prepare("INSERT INTO profile (Name,Contact_Number,Email_Id,Gender, DOB, User_Name,Pass_Word) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 				//Insert
-				$stmt->bind_param("ssssss", $name, $phoneNumber, $emailId , $gender, $userName, $passWord);
+				$stmt->bind_param("sssssss", $name, $phoneNumber, $emailId , $gender, $dob, $userName, $passWord);
 
 				if (!$stmt->execute()) 
 				{   //Execute and check for errors

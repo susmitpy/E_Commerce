@@ -1,9 +1,13 @@
 
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<title> Sign Up </title>
 		<link rel="stylesheet"  href="Common.css">
+		<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	</head>
 	<body>
 		<center>
@@ -17,15 +21,16 @@
 			<input type = "number" name = "phoneNumber" placeholder = "91xxxxxxxxxx" class = "textBox" oninput="validate_contact()" id = "contact" maxlength="12" required> &nbsp;
 			<i id = "contact_validation" style="color:red;">Contact Validation</i>
 			<br>
-
+			
 			<label for="emailId" class="label">Email ID</label> 
 			<input type="text" name="emailId" class = "textBox" oninput="validate_email()" id = "email" required>&nbsp;<i id = "email_validation" style = "color:red;">Email Validation</i>
 			<br>
-
 			<label for="gender" class="label">Gender</label>
 			Male <input type = "radio" name = "gender" value = "M" checked = "checked"> &nbsp; Female<input type = "radio" name = "gender" value = "F">
 			<br>  
-
+			<label for="datePicker" class = "label">DOB</label>
+			<input type="text" name="date" id="datePicker" required>
+			<br>
 			<label for="userName" class="label">Username</label>
 			<input type="text" name="userName" class = "textBox" required>
 			<br>
@@ -45,6 +50,12 @@
 		<script type="text/javascript">
 			contact_ok = false
 			email_ok = false
+
+			$(function()
+				{
+					$( "#datePicker").datepicker();
+				});
+
 			function Submit() 
 			{
 				if (contact_ok && email_ok)
@@ -139,6 +150,7 @@
 					document.getElementById("contact_validation").style.color = "green";
 					document.getElementById("contact_validation").innerHTML = "Correct";
 					contact_ok = true
+					
 				}
 
 			}
