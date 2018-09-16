@@ -4,33 +4,54 @@
 	<head>
 		<title> Sign Up </title>
 		<link rel="stylesheet"  href="Common.css">
-		<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-         rel = "stylesheet">
-        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 	</head>
 	<body>
 		<center>
 		<h1 align = "center" class="Heading">Sign Up</h1>
 		<form class = "form">
+
 			<label for="fullName" class="label">Full Name</label>
 			<input type = "text" name = "fullName" placeholder = "First Middle Last" class = "textBox" required> 
 			<br>
 
 			<label for="phoneNumber" class="label">Contact Number</label> 
-			<input type = "number" name = "phoneNumber" placeholder = "10 Digits" maxlength = "10" class = "textBox" oninput="validate_contact()" id = "contact" required> &nbsp;
+			91
+			<input type = "number" name = "phoneNumber" placeholder = "10 Digits" class = "textBox" oninput="validate_contact()" id = "contact" maxlength="10" required> &nbsp;
 			<i id = "contact_validation" style="color:red;">Contact Validation</i>
 			<br>
 			
 			<label for="emailId" class="label">Email ID</label> 
 			<input type="text" name="emailId" class = "textBox" oninput="validate_email()" id = "email" required>&nbsp;<i id = "email_validation" style = "color:red;">Email Validation</i>
 			<br>
+
 			<label for="gender" class="label">Gender</label>
 			Male <input type = "radio" name = "gender" value = "M" checked = "checked"> &nbsp; Female<input type = "radio" name = "gender" value = "F">
 			<br>  
-			<label for="datePicker" class = "label">DOB</label>
-			<input type="text" name="date" id="datePicker" required>
+
+			<label for="dob" class = "label">DOB</label>
+			<input type="number" name="dob" id="dob_day" placeholder="date of the month" min = "1" max = "31" required>
+
+			<select id = "dob_month">
+
+				<option value=1 selected> January </option>
+				<option value=2> February </option>
+				<option value=3> March </option>
+				<option value=4> April </option>
+				<option value=5> May </option>
+				<option value=6> June </option>
+				<option value=7> July </option>
+				<option value=8> August </option>
+				<option value=9> September </option>
+				<option value=10> October </option>
+				<option value=11> November </option>
+				<option value=12> December </option>
+
+			</select>
+
+			<input type="number" id="dob_year" placeholder="Year" required>
 			<br>
+
 			<label for="userName" class="label">Username</label>
 			<input type="text" name="userName" class = "textBox" required>
 			<br>
@@ -51,10 +72,6 @@
 			contact_ok = false
 			email_ok = false
 
-			$(function()
-				{
-					$( "#datePicker").datepicker();
-				});
 
 			function Submit() 
 			{

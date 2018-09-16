@@ -17,8 +17,13 @@
 	$emailId = $_POST["emailId"];
 	$userName = $_POST["userName"];
 	$passWord = $_POST["passWord"];
-	$dob = $_POST["datePicker"];
+	
+	//DOB
+	$dob_day = $_POST["dob_day"]
+	$dob_month = $_POST["dob_month"]
+	$dob_year = $_POST["dob_year"]
 
+	$dob = $dob_day + "/" + $dob_month + "/" + $dob_year
 	//Checking if user already exists
 
 	$stmt = $conn-> prepare("SELECT Name, Contact_Number, Email_Id, User_Name FROM profile WHERE User_Name = ? OR Contact_Number = ? OR Email_Id = ?");
